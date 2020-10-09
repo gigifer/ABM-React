@@ -1,0 +1,30 @@
+{
+  "name": "abm-react-curso",
+  "version": "1.0.0",
+  "description": "curso de react",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gigifer/ABM-React.git"
+  },
+  "author": "Gisela Fernandez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gigifer/ABM-React/issues"
+  },
+  "homepage": "https://github.com/gigifer/ABM-React#readme",
+  "dependencies": {
+    "apollo-server": "^2.18.2",
+    "bcrypt": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "js": "^0.1.0",
+    "mongoose": "^5.10.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
