@@ -32,6 +32,21 @@ const typeDefs = gql `
         telefono: String
         vendedor: ID
     }
+
+    type Pedido{
+        id: ID
+        pedido: [PedidoGrupo]
+        total: Float
+        cliente: ID
+        vendedor: ID
+        fecha: String
+        estado: EstadoPedido
+    }
+
+    type PedidoGrupo{
+        id: ID
+        cantidad: Int
+    }
     
     input UsuarioInput{
         nombre: String!
@@ -59,6 +74,24 @@ const typeDefs = gql `
         telefono: String
     }
 
+    input PedidoProductoInput{
+        id: ID
+        cantidad: Int
+    }
+
+    input PedidoInput{
+        pedido: [PedidoProductoInput]
+        total: Float!
+        cliente: ID!
+        estado: EstadoPedido
+    }
+
+    enum EstadoPedido{
+        PENDIENTE
+        COMPLETADO
+        CANCELADO
+    }
+
     type Mutation{
         # Usuario
         nuevoUsuario(input: UsuarioInput): Usuario
@@ -71,6 +104,11 @@ const typeDefs = gql `
 
         # Clientes
         nuevoCliente(input: ClienteInput): Cliente
+        actualizarCliente(id: ID!, input: ClienteInput): Cliente
+        eliminarCliente(id: ID!): String
+
+        # Pedido
+        nuevoPedido(input: PedidoInput): Pedido
     }
 
     type Query{
@@ -80,6 +118,16 @@ const typeDefs = gql `
         # Productos
         obtenerProductos: [Producto]
         obtenerProducto(id: ID): Producto
+
+        # Clientes
+        obtenerClientes: [Cliente]
+        obtenerClientesVendedor: [Cliente]
+        obtenerCliente(id: ID!): Cliente
+
+        # Pedido
+        obtenerPedidos: [Pedido]
+        obtenerPedidosVendedor: [Pedido]
+        obtenerPedido(id: ID!): Pedido
     }`;
 
 module.exports = typeDefs;
