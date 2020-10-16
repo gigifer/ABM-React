@@ -47,6 +47,16 @@ const typeDefs = gql `
         id: ID
         cantidad: Int
     }
+
+    type TopCliente{
+        total: Float
+        cliente: [Cliente]
+    }
+
+    type TopVendedor{
+        total: Float
+        vendedor: [Usuario]
+    }
     
     input UsuarioInput{
         nombre: String!
@@ -109,6 +119,8 @@ const typeDefs = gql `
 
         # Pedido
         nuevoPedido(input: PedidoInput): Pedido
+        actualizarPedido(id: ID!, input: PedidoInput): Pedido
+        eliminarPedido(id:ID!): String
     }
 
     type Query{
@@ -128,6 +140,12 @@ const typeDefs = gql `
         obtenerPedidos: [Pedido]
         obtenerPedidosVendedor: [Pedido]
         obtenerPedido(id: ID!): Pedido
+        obtenerPedidosEstado(estado: String!): [Pedido]
+
+        # Busquedas avanzadas
+        mejoresClientes: [TopCliente]
+        mejoresVendedores: [TopVendedor]
+        buscarProducto(texto: String!): [Producto]
     }`;
 
 module.exports = typeDefs;
